@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check dependencies / packages – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../architecture.html">Installation failures</a>
+        <span class="sep">›</span>
+        <span>Check dependencies</span>
+      </nav>
+      <h1>How to check dependencies / packages</h1>
+      <p class="subtitle">Instruction: verify required packages and versions</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        The server installation may require specific system packages, runtimes, or versions (e.g. Java, Python, libs).
+        Missing or wrong versions cause install or runtime failures.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Read the server’s installation or prerequisites doc and note every required package and version.</li>
+        <li>On Linux: use <code>rpm -q &lt;package&gt;</code> or <code>dpkg -l &lt;package&gt;</code>, or <code>which &lt;cmd&gt;</code> and <code>&lt;cmd&gt; --version</code> for runtimes.</li>
+        <li>Install missing packages with the distro package manager (<code>yum</code>/<code>dnf</code>/<code>apt</code>) or follow the vendor’s guide for third-party runtimes.</li>
+        <li>Re-run the installer after satisfying dependencies.</li>
+      </ol>
+
+      <p><a href="../architecture.html">← Back to Installation failures</a></p>
+    </div>
+  </div>
+</body>
+</html>

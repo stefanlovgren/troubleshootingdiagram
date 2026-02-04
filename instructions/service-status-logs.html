@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check service status / unit logs – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../api.html">Services &amp; config</a>
+        <span class="sep">›</span>
+        <span>Service status / unit logs</span>
+      </nav>
+      <h1>How to check service status / unit logs</h1>
+      <p class="subtitle">Instruction: see if the service is running and read its logs</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        When a server component won’t start or crashes, the first step is to see its state (active, failed, etc.) and
+        read the logs (e.g. systemd journal) for the exact error.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Linux (systemd):</strong> <code>systemctl status &lt;unit&gt;</code> to see state and last lines of log. For full logs: <code>journalctl -u &lt;unit&gt; -n 100 --no-pager</code>, or <code>journalctl -u &lt;unit&gt; -f</code> to follow. Use <code>journalctl -u &lt;unit&gt; -p err -n 50</code> to filter by priority.</li>
+        <li><strong>Windows:</strong> Open Services (<code>services.msc</code>) and check status of the service, or <code>Get-Service -Name &lt;Name&gt;</code>. View Event Viewer → Windows Logs → Application for application errors.</li>
+      </ol>
+
+      <p><a href="../api.html">← Back to Services &amp; config</a></p>
+    </div>
+  </div>
+</body>
+</html>

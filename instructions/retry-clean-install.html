@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to retry or clean install – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../architecture.html">Installation failures</a>
+        <span class="sep">›</span>
+        <span>Retry or clean install</span>
+      </nav>
+      <h1>How to retry or clean install</h1>
+      <p class="subtitle">Instruction: retry the installer or perform a clean reinstall</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        After fixing the underlying issue (disk, dependencies, logs, permissions), you either retry the same installer
+        or remove a partial install and start from a clean state.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Retry:</strong> Run the installer again with the same options. Ensure no other process is using the install directory or required ports.</li>
+        <li><strong>Clean install:</strong> Uninstall or remove the product (use vendor uninstaller or delete the install directory). Remove any leftover config under <code>/etc</code> or the user home if needed. Then run the installer from scratch.</li>
+        <li>If the installer has a “repair” or “resume” option, use it only when the docs recommend it; otherwise prefer a full clean install after removing the previous attempt.</li>
+      </ol>
+
+      <p><a href="../architecture.html">← Back to Installation failures</a></p>
+    </div>
+  </div>
+</body>
+</html>

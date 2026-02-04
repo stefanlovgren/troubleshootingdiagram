@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check bind address / interface – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../components.html">Network issues</a>
+        <span class="sep">›</span>
+        <span>Bind address / interface</span>
+      </nav>
+      <h1>How to check bind address / interface</h1>
+      <p class="subtitle">Instruction: verify which address or interface the service binds to</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        A service can listen on <code>0.0.0.0</code> (all interfaces), <code>127.0.0.1</code> (localhost only), or a
+        specific IP. If it’s bound only to localhost, remote clients cannot connect.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>From “ports listening”, you already have the list. In <code>ss -tlnp</code> or <code>netstat -tlnp</code>, look at the “Local Address” column: <code>0.0.0.0:8080</code> means all interfaces; <code>127.0.0.1:8080</code> means localhost only.</li>
+        <li>Find the server’s config (e.g. <code>bind_address</code>, <code>listen</code>, <code>host</code>). Set it to <code>0.0.0.0</code> or the correct interface IP if you need remote access. Restart the service after changing.</li>
+      </ol>
+
+      <p><a href="../components.html">← Back to Network issues</a></p>
+    </div>
+  </div>
+</body>
+</html>

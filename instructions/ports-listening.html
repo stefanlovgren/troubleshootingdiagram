@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check ports in use / listening – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../components.html">Network issues</a>
+        <span class="sep">›</span>
+        <span>Ports in use / listening</span>
+      </nav>
+      <h1>How to check ports in use / listening</h1>
+      <p class="subtitle">Instruction: see which ports are listening and which process uses them</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        The server application listens on one or more ports. If the port is not listening, or another process has
+        taken it, connections fail. You need to confirm the expected port is open and bound to the right process.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Linux:</strong> <code>ss -tlnp</code> or <code>netstat -tlnp</code> to list listening TCP ports and the process (PID). Check that your app’s port appears and the PID is your server process.</li>
+        <li><strong>Windows:</strong> <code>netstat -ano</code> to see listening ports and the owning PID; match the PID in Task Manager or <code>Get-Process -Id &lt;PID&gt;</code>.</li>
+        <li>If the port is in use by another app, either stop that app, change your server’s config to use a different port, or resolve the conflict. If nothing is listening, the service may not have started—check service status and logs.</li>
+      </ol>
+
+      <p><a href="../components.html">← Back to Network issues</a></p>
+    </div>
+  </div>
+</body>
+</html>

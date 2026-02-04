@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check SELinux / AppArmor context – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../data-flow.html">Permissions</a>
+        <span class="sep">›</span>
+        <span>SELinux / AppArmor</span>
+      </nav>
+      <h1>How to check SELinux / AppArmor context</h1>
+      <p class="subtitle">Instruction: verify and fix mandatory access control</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        On RHEL/CentOS/Fedora (SELinux) or some Debian/Ubuntu (AppArmor), policy can block the server from reading
+        files, binding ports, or executing binaries even when ownership looks correct.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>SELinux:</strong> Check status with <code>getenforce</code>. If Enforcing, check logs: <code>ausearch -m avc -ts recent</code> or <code>/var/log/audit/audit.log</code> for “denied”. Restore context on app dirs: <code>restorecon -Rv /path/to/app</code>. If the app needs a custom policy, use <code>setsebool</code> or create a module; temporarily test with <code>setenforce 0</code> (not for production).</li>
+        <li><strong>AppArmor:</strong> <code>aa-status</code> to see loaded profiles. Check <code>/var/log/syslog</code> for AppArmor denials. Put the server in complain mode for its profile to log without blocking: <code>aa-complain /etc/apparmor.d/&lt;profile&gt;</code>, or fix the profile and reload.</li>
+      </ol>
+
+      <p><a href="../data-flow.html">← Back to Permissions</a></p>
+    </div>
+  </div>
+</body>
+</html>

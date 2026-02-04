@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check config file ownership – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../data-flow.html">Permissions</a>
+        <span class="sep">›</span>
+        <span>Config file ownership</span>
+      </nav>
+      <h1>How to check config file ownership</h1>
+      <p class="subtitle">Instruction: ensure the service user can read config files</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Config files (e.g. under <code>/etc</code> or the app directory) must be readable by the user the service
+        runs as. “Permission denied” when reading config is often ownership or mode.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Find config files from the server docs or under <code>/etc/&lt;app&gt;</code>, <code>&lt;install-dir&gt;/conf</code>. Run <code>ls -la &lt;config-file&gt;</code>.</li>
+        <li>If owner is root and the service runs as <code>appuser</code>, either make the file readable by that user (e.g. <code>chmod 644</code> and ensure group or others can read) or change owner: <code>chown appuser:appgroup /etc/app/config.yml</code>. Avoid making config world-writable.</li>
+      </ol>
+
+      <p><a href="../data-flow.html">← Back to Permissions</a></p>
+    </div>
+  </div>
+</body>
+</html>

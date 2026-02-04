@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server installation troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2d2d35',
+        primaryTextColor: '#e4e4e7',
+        primaryBorderColor: '#7c3aed',
+        lineColor: '#52525b',
+        secondaryColor: '#27272a',
+        tertiaryColor: '#18181c'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Server installation troubleshooting</h1>
+      <p class="subtitle">Click a problem area to drill down into that troubleshooting path.</p>
+    </header>
+
+    <div class="diagram-container">
+      <pre class="mermaid">
+flowchart TB
+  subgraph problems["Problem areas"]
+    A[Installation failures]
+    B[Network issues]
+    C[Permissions]
+    D[Services & config]
+  end
+  A --> B
+  B --> C
+  C --> D
+  click A "architecture.html" "Troubleshoot installation failures"
+  click B "components.html" "Troubleshoot network issues"
+  click C "data-flow.html" "Troubleshoot permissions"
+  click D "api.html" "Troubleshoot services and config"
+      </pre>
+      <p class="diagram-hint">Click any node to open its troubleshooting page.</p>
+    </div>
+
+    <div class="prose">
+      <h2>About this chart</h2>
+      <p>
+        Use this chart when something goes wrong during or after a complicated server installation. Each box is a
+        problem category—click it to see a focused troubleshooting sub-diagram and steps for that area.
+      </p>
+      <p>
+        Work through <strong>Installation failures</strong> first (installer errors, dependencies, disk space), then
+        <strong>Network issues</strong>, <strong>Permissions</strong>, and <strong>Services & config</strong> as needed.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

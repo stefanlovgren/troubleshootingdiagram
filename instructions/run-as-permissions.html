@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check run-as user / permissions – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../architecture.html">Installation failures</a>
+        <span class="sep">›</span>
+        <span>Check run-as user / permissions</span>
+      </nav>
+      <h1>How to check run-as user / permissions</h1>
+      <p class="subtitle">Instruction: verify the user running the installer has access</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        The installer runs as a specific user. If that user cannot write to the install directory or run certain
+        commands, the install fails with permission errors.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Confirm which user you are: <code>whoami</code> (Linux) or <code>echo %USERNAME%</code> (Windows cmd).</li>
+        <li>Check write access to the target directory: e.g. <code>ls -la /opt</code> and ensure your user (or group) can create and write there. Use <code>sudo</code> only if the docs say to run the installer as root.</li>
+        <li>If the installer must run as root, run it with <code>sudo</code> or from a root session. If it must run as a dedicated user, create that user first and run the installer logged in as that user (or via <code>su</code>).</li>
+      </ol>
+
+      <p><a href="../architecture.html">← Back to Installation failures</a></p>
+    </div>
+  </div>
+</body>
+</html>

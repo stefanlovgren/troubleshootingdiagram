@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check ping / DNS resolution – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../components.html">Network issues</a>
+        <span class="sep">›</span>
+        <span>Ping / DNS</span>
+      </nav>
+      <h1>How to check ping / DNS resolution</h1>
+      <p class="subtitle">Instruction: verify basic connectivity and name resolution</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Before digging into firewall or ports, confirm that the server can reach other hosts (or be reached) at the
+        network layer and that hostnames resolve correctly.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Ping:</strong> From the server, run <code>ping -c 3 &lt;other-host-ip-or-name&gt;</code>. From another machine, ping the server’s IP. If ping fails, the problem is connectivity or firewall (ICMP may be blocked), not the app.</li>
+        <li><strong>DNS:</strong> Run <code>nslookup &lt;hostname&gt;</code> or <code>dig &lt;hostname&gt;</code> to see if the hostname resolves. Check <code>/etc/resolv.conf</code> (Linux) for DNS servers. Fix DNS or use IP if resolution fails.</li>
+      </ol>
+
+      <p><a href="../components.html">← Back to Network issues</a></p>
+    </div>
+  </div>
+</body>
+</html>

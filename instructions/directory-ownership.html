@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check directory ownership &amp; mode – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../data-flow.html">Permissions</a>
+        <span class="sep">›</span>
+        <span>Directory ownership &amp; mode</span>
+      </nav>
+      <h1>How to check directory ownership &amp; mode</h1>
+      <p class="subtitle">Instruction: fix ownership and permissions on data/log dirs</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        The server needs to read and often write to its install, data, and log directories. If those are owned by root
+        or have restrictive modes, the run-as user cannot access them.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Identify the run-as user (see “Service / run-as user”). List the dirs the app uses: <code>ls -la /path/to/app</code>, <code>ls -la /var/log/&lt;app&gt;</code>, etc.</li>
+        <li>Owner and group should allow the service user to read (and write where needed). Typical: <code>chown -R appuser:appgroup /path/to/data /path/to/logs</code>.</li>
+        <li>Set mode so the owner has rwx and group/others as needed, e.g. <code>chmod -R 755 /path/to/data</code> or <code>750</code> for more restriction. Log dirs usually need <code>775</code> or <code>755</code> so the app can write.</li>
+      </ol>
+
+      <p><a href="../data-flow.html">← Back to Permissions</a></p>
+    </div>
+  </div>
+</body>
+</html>

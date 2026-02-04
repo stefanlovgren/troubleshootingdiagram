@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & config – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2d2d35',
+        primaryTextColor: '#e4e4e7',
+        primaryBorderColor: '#7c3aed',
+        lineColor: '#52525b',
+        secondaryColor: '#27272a',
+        tertiaryColor: '#18181c'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Services & config</span>
+      </nav>
+      <h1>Services & config</h1>
+      <p class="subtitle">Click a step to open the instruction page for that check.</p>
+    </header>
+
+    <div class="sub-diagram diagram-container">
+      <h3>Services & config flow (this section)</h3>
+      <pre class="mermaid">
+flowchart TB
+  Start[Service problem?] --> Status[Service status / unit logs]
+  Status --> Config[Config syntax & paths]
+  Config --> Env[Env vars / defaults]
+  Env --> Deps[Required services / ordering]
+  Deps --> Restart[Restart or fix config]
+  Restart --> Start
+  click Status "instructions/service-status-logs.html" "How to check service status / logs"
+  click Config "instructions/config-syntax.html" "How to check config syntax"
+  click Env "instructions/env-vars.html" "How to check env vars"
+  click Deps "instructions/service-dependencies.html" "How to check service dependencies"
+      </pre>
+      <p class="diagram-hint">Click any step to open its instruction page.</p>
+    </div>
+
+    <div class="prose">
+      <h2>Services & config troubleshooting</h2>
+      <p>
+        When a server component won’t start or misbehaves: check <strong>service status and unit logs</strong>
+        (e.g. <code>journalctl -u &lt;unit&gt;</code>), then <strong>config syntax and paths</strong>, then
+        <strong>environment variables and defaults</strong>, and that any <strong>dependent services</strong> are up
+        and started in the right order. Restart only after fixing config or dependencies.
+      </p>
+      <p>
+        This sub-chart covers the “Services & config” node from the <a href="index.html">main troubleshooting
+        chart</a>. For install or network issues, use <strong>Installation failures</strong> or
+        <strong>Network issues</strong>.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check required services / ordering – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../api.html">Services &amp; config</a>
+        <span class="sep">›</span>
+        <span>Required services / ordering</span>
+      </nav>
+      <h1>How to check required services / ordering</h1>
+      <p class="subtitle">Instruction: ensure dependencies are running and start order is correct</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        The server may depend on another service (e.g. database, message queue). If the dependency isn’t up or
+        starts after your service, the app can fail. Start order and dependency declarations must be correct.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>systemd:</strong> In the unit file, check <code>After=</code> and <code>Requires=</code> or <code>Wants=</code>. List them: <code>systemctl list-dependencies &lt;unit&gt;</code>. Ensure each listed unit is enabled and starts successfully.</li>
+        <li>Start the dependency first: <code>systemctl start &lt;dependency-unit&gt;</code>, then <code>systemctl start &lt;your-unit&gt;</code>. If the app still fails, the dependency may need more time (consider <code>After=</code> and health checks) or a different ordering.</li>
+      </ol>
+
+      <p><a href="../api.html">← Back to Services &amp; config</a></p>
+    </div>
+  </div>
+</body>
+</html>

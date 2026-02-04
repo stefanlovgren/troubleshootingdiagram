@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check service / run-as user – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../data-flow.html">Permissions</a>
+        <span class="sep">›</span>
+        <span>Service / run-as user</span>
+      </nav>
+      <h1>How to check service / run-as user</h1>
+      <p class="subtitle">Instruction: see which user the service runs as</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Permission errors often happen because the process runs as a different user than you expect. You need to know
+        which user (and group) the server process runs as so you can fix ownership of files and dirs.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Linux (systemd):</strong> <code>systemctl show &lt;unit&gt; --property=User --property=Group</code> to see the user/group of the service.</li>
+        <li><strong>Linux (process):</strong> <code>ps -o user= -p &lt;PID&gt;</code> or <code>ps aux | grep &lt;app&gt;</code> to see the user of a running process.</li>
+        <li>Ensure config files, data dirs, and log dirs are readable (and writable where needed) by that user. Use <code>chown</code> / <code>chmod</code> as needed.</li>
+      </ol>
+
+      <p><a href="../data-flow.html">← Back to Permissions</a></p>
+    </div>
+  </div>
+</body>
+</html>

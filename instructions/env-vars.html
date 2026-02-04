@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check env vars / defaults – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../api.html">Services &amp; config</a>
+        <span class="sep">›</span>
+        <span>Env vars / defaults</span>
+      </nav>
+      <h1>How to check env vars / defaults</h1>
+      <p class="subtitle">Instruction: verify environment variables the service uses</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Many servers take settings from environment variables (e.g. <code>JAVA_HOME</code>, <code>CONFIG_PATH</code>).
+        If those are wrong or unset when the service starts, the app can fail or use wrong config.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>systemd:</strong> In the unit file, check <code>Environment=</code> and <code>EnvironmentFile=</code>. Use <code>systemctl show &lt;unit&gt; --property=Environment</code> to see resolved values. Ensure any file in <code>EnvironmentFile=</code> exists and contains the expected vars.</li>
+        <li>Compare with the app’s documentation: required vars, correct format (paths, URLs). Set missing or wrong vars in the unit or the env file, then <code>systemctl daemon-reload</code> and restart the service.</li>
+      </ol>
+
+      <p><a href="../api.html">← Back to Services &amp; config</a></p>
+    </div>
+  </div>
+</body>
+</html>

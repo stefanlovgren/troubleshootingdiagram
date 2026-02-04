@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permissions – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2d2d35',
+        primaryTextColor: '#e4e4e7',
+        primaryBorderColor: '#7c3aed',
+        lineColor: '#52525b',
+        secondaryColor: '#27272a',
+        tertiaryColor: '#18181c'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Permissions</span>
+      </nav>
+      <h1>Permissions</h1>
+      <p class="subtitle">Click a step to open the instruction page for that check.</p>
+    </header>
+
+    <div class="sub-diagram diagram-container">
+      <h3>Permissions troubleshooting flow (this section)</h3>
+      <pre class="mermaid">
+flowchart TB
+  Start[Permission error?] --> User[Service / run-as user]
+  User --> Dirs[Directory ownership & mode]
+  Dirs --> Files[Config file ownership]
+  Files --> SELinux[SELinux / AppArmor context]
+  SELinux --> Fix[Fix ownership or policy]
+  Fix --> Start
+  click User "instructions/run-as-user.html" "How to check run-as user"
+  click Dirs "instructions/directory-ownership.html" "How to check directory ownership"
+  click Files "instructions/config-file-ownership.html" "How to check config file ownership"
+  click SELinux "instructions/selinux-apparmor.html" "How to check SELinux / AppArmor"
+      </pre>
+      <p class="diagram-hint">Click any step to open its instruction page.</p>
+    </div>
+
+    <div class="prose">
+      <h2>Permissions troubleshooting</h2>
+      <p>
+        Permission problems often come from the <strong>user the service runs as</strong>, wrong
+        <strong>directory ownership or mode</strong>, or <strong>config files</strong> not readable by that user.
+        On locked-down systems, check <strong>SELinux or AppArmor</strong> context and adjust ownership or policy
+        as needed.
+      </p>
+      <p>
+        This sub-chart covers the “Permissions” node from the <a href="index.html">main troubleshooting chart</a>.
+        For service startup or config errors, use <a href="api.html">Services & config</a>.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

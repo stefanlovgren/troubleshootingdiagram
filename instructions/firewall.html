@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check firewall / security groups – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../components.html">Network issues</a>
+        <span class="sep">›</span>
+        <span>Firewall / security groups</span>
+      </nav>
+      <h1>How to check firewall / security groups</h1>
+      <p class="subtitle">Instruction: verify firewall and cloud security group rules</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Traffic can be blocked by the host firewall (iptables, firewalld, Windows Firewall) or by cloud security
+        groups. The server may need inbound/outbound rules for specific ports or IPs.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li><strong>Linux (firewalld):</strong> <code>firewall-cmd --list-all</code> to see zones and rules. Open the required port, e.g. <code>firewall-cmd --permanent --add-port=8080/tcp</code>, then <code>firewall-cmd --reload</code>.</li>
+        <li><strong>Linux (iptables):</strong> <code>iptables -L -n</code> to list rules. Add an ACCEPT rule for the app’s port if it’s currently DROP/REJECT.</li>
+        <li><strong>Cloud:</strong> In the cloud console, open the security group attached to the server and ensure inbound (and outbound if needed) allow the correct port and source (e.g. 0.0.0.0/0 or your VPN).</li>
+      </ol>
+
+      <p><a href="../components.html">← Back to Network issues</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to check config syntax &amp; paths – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="../index.html">Home</a>
+        <span class="sep">›</span>
+        <a href="../api.html">Services &amp; config</a>
+        <span class="sep">›</span>
+        <span>Config syntax &amp; paths</span>
+      </nav>
+      <h1>How to check config syntax &amp; paths</h1>
+      <p class="subtitle">Instruction: validate config files and paths referenced in them</p>
+    </header>
+
+    <div class="prose">
+      <h2>What this is</h2>
+      <p>
+        Invalid syntax (e.g. wrong YAML/JSON, unclosed quotes) or wrong paths (missing dirs/files) in config cause the
+        service to fail on startup. You need to validate syntax and ensure every path exists.
+      </p>
+
+      <h2>How to do it</h2>
+      <ol class="steps">
+        <li>Locate the config file(s) from the service unit (<code>EnvironmentFile</code>, <code>ExecStart</code>) or the app docs.</li>
+        <li>If YAML: use a validator or a quick <code>python -c "import yaml; yaml.safe_load(open('config.yml'))"</code>. If JSON: <code>python -c "import json; json.load(open('config.json'))"</code> or an online validator.</li>
+        <li>Search the config for paths (log dir, data dir, certs). Check each with <code>ls -la &lt;path&gt;</code> or <code>Test-Path</code> (PowerShell). Create dirs or fix paths as needed.</li>
+      </ol>
+
+      <p><a href="../api.html">← Back to Services &amp; config</a></p>
+    </div>
+  </div>
+</body>
+</html>

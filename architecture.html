@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation failures – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2d2d35',
+        primaryTextColor: '#e4e4e7',
+        primaryBorderColor: '#7c3aed',
+        lineColor: '#52525b',
+        secondaryColor: '#27272a',
+        tertiaryColor: '#18181c'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Installation failures</span>
+      </nav>
+      <h1>Installation failures</h1>
+      <p class="subtitle">Click a step to open the instruction page for that check.</p>
+    </header>
+
+    <div class="sub-diagram diagram-container">
+      <h3>Installation failure flow (this section)</h3>
+      <pre class="mermaid">
+flowchart TB
+  Start[Install failed?] --> CheckDisk[Check disk space]
+  CheckDisk --> CheckDeps[Check dependencies / packages]
+  CheckDeps --> CheckLogs[Check installer logs]
+  CheckLogs --> CheckPerm[Check run-as user / permissions]
+  CheckPerm --> Retry[Retry or clean install]
+  Retry --> Start
+  click CheckDisk "instructions/disk-space.html" "How to check disk space"
+  click CheckDeps "instructions/dependencies.html" "How to check dependencies"
+  click CheckLogs "instructions/installer-logs.html" "How to check installer logs"
+  click CheckPerm "instructions/run-as-permissions.html" "How to check run-as / permissions"
+  click Retry "instructions/retry-clean-install.html" "How to retry or clean install"
+      </pre>
+      <p class="diagram-hint">Click any step to open its instruction page.</p>
+    </div>
+
+    <div class="prose">
+      <h2>Installation failure troubleshooting</h2>
+      <p>
+        When the server installation fails, follow the flow above: verify <strong>disk space</strong>, then
+        <strong>dependencies</strong> (missing packages, wrong versions), then <strong>installer logs</strong> for the
+        exact error, then <strong>permissions</strong> of the user running the installer. Retry or perform a clean
+        install only after checking logs.
+      </p>
+      <p>
+        This sub-chart covers the “Installation failures” node from the <a href="index.html">main troubleshooting
+        chart</a>. Next check <strong>Network issues</strong>, <strong>Permissions</strong>, or
+        <strong>Services & config</strong> if the install succeeds but the server still misbehaves.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

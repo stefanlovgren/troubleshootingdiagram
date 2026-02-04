@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network issues – Server troubleshooting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#2d2d35',
+        primaryTextColor: '#e4e4e7',
+        primaryBorderColor: '#7c3aed',
+        lineColor: '#52525b',
+        secondaryColor: '#27272a',
+        tertiaryColor: '#18181c'
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="index.html">Home</a>
+        <span class="sep">›</span>
+        <span>Network issues</span>
+      </nav>
+      <h1>Network issues</h1>
+      <p class="subtitle">Click a step to open the instruction page for that check.</p>
+    </header>
+
+    <div class="sub-diagram diagram-container">
+      <h3>Network troubleshooting flow (this section)</h3>
+      <pre class="mermaid">
+flowchart TB
+  Start[Connectivity problem?] --> Ping[Ping / DNS resolution]
+  Ping --> Firewall[Firewall / security groups]
+  Firewall --> Ports[Ports in use / listening]
+  Ports --> Bind[Bind address / interface]
+  Bind --> Resolve[Resolve or escalate]
+  Resolve --> Start
+  click Ping "instructions/ping-dns.html" "How to check ping / DNS"
+  click Firewall "instructions/firewall.html" "How to check firewall"
+  click Ports "instructions/ports-listening.html" "How to check ports"
+  click Bind "instructions/bind-address.html" "How to check bind address"
+      </pre>
+      <p class="diagram-hint">Click any step to open its instruction page.</p>
+    </div>
+
+    <div class="prose">
+      <h2>Network issue troubleshooting</h2>
+      <p>
+        For problems reaching the server or the server reaching others: confirm <strong>ping and DNS</strong>, then
+        <strong>firewall and security groups</strong>, then that the right <strong>ports are listening</strong> and
+        the service is <strong>bound to the expected interface</strong>. Use this flow to resolve or escalate.
+      </p>
+      <p>
+        This sub-chart covers the “Network issues” node from the <a href="index.html">main troubleshooting chart</a>.
+        See <strong>Permissions</strong> or <strong>Services & config</strong> for other problem areas.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
