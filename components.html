@@ -11,20 +11,20 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({
-      startOnLoad: true,
-      theme: 'dark',
+      startOnLoad: false,
+      theme: 'base',
       themeVariables: {
-        primaryColor: '#2d2d35',
-        primaryTextColor: '#e4e4e7',
-        primaryBorderColor: '#7c3aed',
-        lineColor: '#52525b',
-        secondaryColor: '#27272a',
-        tertiaryColor: '#18181c'
+        primaryColor: '#fceeea',
+        primaryTextColor: '#2d2a26',
+        primaryBorderColor: '#e07a5f',
+        lineColor: '#c4beb5',
+        secondaryColor: '#f5f3ef',
+        tertiaryColor: '#ffffff'
       }
     });
   </script>
 </head>
-<body>
+<body class="sub-chart">
   <div class="wrap">
     <header>
       <nav>
@@ -67,5 +67,11 @@ flowchart TB
       </p>
     </div>
   </div>
+  <script src="diagram-enhance.js"></script>
+  <script>
+    mermaid.run({ querySelector: '.mermaid', suppressErrors: true }).then(function () {
+      if (window.diagramEnhance) window.diagramEnhance();
+    });
+  </script>
 </body>
 </html>
